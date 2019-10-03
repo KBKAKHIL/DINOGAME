@@ -83,10 +83,29 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.screenHeight = h;
 
         this.printScreenInfo();
+        this.playerImage = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.dino32);
+
+        this.playerXposition = 1450;
+        this.playerYposition = 475;
+// 1. create the hitbox
+        this.playerHitbox = new Rect(1450,
+                475,
+                1450+playerImage.getWidth(),
+                475+playerImage.getHeight()
+        );
+
+
+        this.itemImage = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.rainbow32);
+
+        this.itemXposition = 50;
+        this.itemYposition = 100;
+
+        this.itemHitbox = new Rect(50,100,50+itemImage.getWidth(),100+itemImage.getHeight());
+
 
 
     }
-
+//
 
 
     private void printScreenInfo() {
