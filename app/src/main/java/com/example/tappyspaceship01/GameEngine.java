@@ -187,12 +187,30 @@ public class GameEngine extends SurfaceView implements Runnable {
             paintbrush.setStyle(Paint.Style.STROKE);
             paintbrush.setStrokeWidth(5);
 
+            canvas.drawBitmap(playerImage,playerXposition,playerYposition,paintbrush);
+            canvas.drawRect(this.playerHitbox,paintbrush);
+
+            canvas.drawBitmap(itemImage,itemXposition,itemYposition,paintbrush);
+            canvas.drawRect(this.itemHitbox,paintbrush);
+
+
+
 
             paintbrush.setColor(Color.RED);
             canvas.drawRect(50,200,1400,230,paintbrush);
             canvas.drawRect(50,400,1400,430,paintbrush);
             canvas.drawRect(50,600,1400,630,paintbrush);
             canvas.drawRect(50,800,1400,830,paintbrush);
+            
+            paintbrush.setTextSize(35);
+            paintbrush.setColor(Color.BLACK);
+            canvas.drawText("Lives : " + lives,
+                    1420,
+                    50,
+                    paintbrush
+            );
+            paintbrush.setTextSize(35);
+            canvas.drawText("Score : " + score,1420,850,paintbrush);
 
 
 
