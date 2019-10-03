@@ -58,6 +58,16 @@ public class GameEngine extends SurfaceView implements Runnable {
     Bitmap itemImage;
     Rect itemHitbox;
 
+    Bitmap item2Image;
+    int item2Xposition;
+    int item2Yposition;
+    Rect item2Hitbox;
+
+    Bitmap item3Image;
+    int item3Xposition;
+    int item3Yposition;
+    Rect item3Hitbox;
+
 
 
 
@@ -96,11 +106,19 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
         this.itemImage = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.rainbow32);
+        this.item2Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.poop32);
+        this.item3Image = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.candy32);
 
         this.itemXposition = 50;
         this.itemYposition = 100;
+        this.item2Xposition = 50;
+        this.item2Yposition = 300;
+        this.item3Xposition = 50;
+        this.item3Yposition = 500;
 
         this.itemHitbox = new Rect(50,100,50+itemImage.getWidth(),100+itemImage.getHeight());
+        this.item2Hitbox = new Rect(50,300,50+item2Image.getWidth(),300+item2Image.getHeight());
+        this.item3Hitbox = new Rect(50,500,50+item3Image.getWidth(),500+item3Image.getHeight());
 
 
 
@@ -163,15 +181,26 @@ public class GameEngine extends SurfaceView implements Runnable {
     public void updatePositions() {
 
 
-
-
-
         this.itemXposition = this.itemXposition + 20;
 
         this.itemHitbox.left = this.itemXposition;
         this.itemHitbox.top = this.itemYposition;
         this.itemHitbox.right = this.itemXposition + this.itemImage.getWidth();
         this.itemHitbox.bottom = this.itemYposition + this.itemImage.getHeight();
+
+        this.item2Xposition = this.item2Xposition + 20;
+
+        this.item2Hitbox.left = this.item2Xposition;
+        this.item2Hitbox.top = this.item2Yposition;
+        this.item2Hitbox.right = this.item2Xposition + this.item2Image.getWidth();
+        this.item2Hitbox.bottom = this.item2Yposition + this.item2Image.getHeight();
+
+        this.item3Xposition = this.item3Xposition + 20;
+
+        this.item3Hitbox.left = this.item3Xposition;
+        this.item3Hitbox.top = this.itemYposition;
+        this.item3Hitbox.right = this.item3Xposition + this.item3Image.getWidth();
+        this.item3Hitbox.bottom = this.item3Yposition + this.item3Image.getHeight();
 
         this.playerYposition = this.playerYposition - 10;
         this.playerHitbox.left = this.playerXposition;
