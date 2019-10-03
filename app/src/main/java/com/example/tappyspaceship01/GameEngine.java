@@ -162,12 +162,54 @@ public class GameEngine extends SurfaceView implements Runnable {
 
     public void updatePositions() {
 
-        this.itemXposition = this.itemXposition + 10;
+
+
+
+
+        this.itemXposition = this.itemXposition + 20;
 
         this.itemHitbox.left = this.itemXposition;
         this.itemHitbox.top = this.itemYposition;
         this.itemHitbox.right = this.itemXposition + this.itemImage.getWidth();
         this.itemHitbox.bottom = this.itemYposition + this.itemImage.getHeight();
+
+        if(playerMoving == "UP") {
+            this.playerYposition = this.playerYposition - 50;
+
+            if (this.playerYposition >= this.screenHeight) {
+                this.playerYposition = this.playerYposition;
+                fingerAction = "";
+
+            }
+
+        }
+        if(playerMoving == "DOWN") {
+            this.playerYposition = this.playerYposition + 50;
+
+            if (this.playerYposition <= 0) {
+                this.playerYposition = this.playerYposition;
+                fingerAction = "";
+
+            }
+        }
+
+
+        if(fingerAction.contentEquals("TOP")){
+            this.playerYposition = this.playerYposition - 50;
+        }
+        else if(fingerAction.contentEquals("BOTTOM")){
+            this.playerYposition = this.playerYposition + 50;
+        }
+
+    // detecting collison
+        if(
+                (itemXposition + 10) >= (this.playerXposition) &&
+                        itemYposition >= this.itemYposition &&
+                        itemYposition <= this.playerYposition + 100
+
+        ){
+            this.score = this.score + 1;
+        }
 
 
 
@@ -245,6 +287,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
     String fingerAction = "";
+    String playerMoving = "up";
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
