@@ -162,6 +162,13 @@ public class GameEngine extends SurfaceView implements Runnable {
 
     public void updatePositions() {
 
+        this.itemXposition = this.itemXposition + 10;
+
+        this.itemHitbox.left = this.itemXposition;
+        this.itemHitbox.top = this.itemYposition;
+        this.itemHitbox.right = this.itemXposition + this.itemImage.getWidth();
+        this.itemHitbox.bottom = this.itemYposition + this.itemImage.getHeight();
+
 
 
 
@@ -201,7 +208,7 @@ public class GameEngine extends SurfaceView implements Runnable {
             canvas.drawRect(50,400,1400,430,paintbrush);
             canvas.drawRect(50,600,1400,630,paintbrush);
             canvas.drawRect(50,800,1400,830,paintbrush);
-            
+
             paintbrush.setTextSize(35);
             paintbrush.setColor(Color.BLACK);
             canvas.drawText("Lives : " + lives,
