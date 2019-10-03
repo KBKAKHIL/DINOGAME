@@ -173,8 +173,14 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.itemHitbox.right = this.itemXposition + this.itemImage.getWidth();
         this.itemHitbox.bottom = this.itemYposition + this.itemImage.getHeight();
 
+        this.playerYposition = this.playerYposition - 10;
+        this.playerHitbox.left = this.playerXposition;
+        this.playerHitbox.top = this.playerYposition;
+        this.playerHitbox.right = this.playerXposition + this.playerImage.getWidth();
+        this.playerHitbox.bottom = this.playerYposition + this.playerImage.getHeight();
+
         if(playerMoving == "UP") {
-            this.playerYposition = this.playerYposition - 50;
+            this.playerYposition = this.playerYposition - 20;
 
             if (this.playerYposition >= this.screenHeight) {
                 this.playerYposition = this.playerYposition;
@@ -184,7 +190,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
         }
         if(playerMoving == "DOWN") {
-            this.playerYposition = this.playerYposition + 50;
+            this.playerYposition = this.playerYposition + 20;
 
             if (this.playerYposition <= 0) {
                 this.playerYposition = this.playerYposition;
@@ -195,17 +201,17 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
         if(fingerAction.contentEquals("TOP")){
-            this.playerYposition = this.playerYposition - 50;
+            this.playerYposition = this.playerYposition - 20;
         }
         else if(fingerAction.contentEquals("BOTTOM")){
-            this.playerYposition = this.playerYposition + 50;
+            this.playerYposition = this.playerYposition + 20;
         }
 
     // detecting collison
         if(
                 (itemXposition + 10) >= (this.playerXposition) &&
-                        itemYposition >= this.itemYposition &&
-                        itemYposition <= this.playerYposition + 100
+                        itemYposition >= this.playerYposition &&
+                        itemYposition <= this.playerYposition + 20
 
         ){
             this.score = this.score + 1;
@@ -294,6 +300,18 @@ public class GameEngine extends SurfaceView implements Runnable {
         int userAction = event.getActionMasked();
         //@TODO: What should happen when person touches the screen?
         if (userAction == MotionEvent.ACTION_DOWN) {
+
+            float fingerXposition = event.getX();
+            float fingerYposition = event.getY();
+            Log.d(TAG,"User Touched :" + fingerXposition + "," + fingerYposition);
+
+            int halfScreen = this.screenWidth / 2;
+            if(fingerXposition <= halfScreen) {
+                fingerAction = "Top";
+            }
+            else if (fingerXposition > halfScreen) {
+                fingerAction = "BOTTOM";
+            }
 
         }
         else if (userAction == MotionEvent.ACTION_UP) {
